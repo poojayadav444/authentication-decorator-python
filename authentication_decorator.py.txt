@@ -1,0 +1,15 @@
+Authentication Decorator
+def login_required(func):
+    def wrapper(user):
+        if user == "admin":
+            return func(user)
+        else:
+            return "Access Denied!"
+    return wrapper
+
+@login_required
+def dashboard(user):
+    return f"Welcome {user}, this is your dashboard."
+
+print(dashboard("admin"))   # Welcome admin, this is your dashboard.
+# print(dashboard("guest"))   # Access Denied!
